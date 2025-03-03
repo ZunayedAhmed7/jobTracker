@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Statistics</h1>
+
+<!-- Statistics Summary -->
+<div>
+    <div>
+        <h5>Summary</h5>
+        <p>Total Applications: {{ total_applications }}</p>
+        <p>Applied: {{ status_counts['Applied'] }}</p>
+        <p>Interviewing: {{ status_counts['Interviewing'] }}</p>
+        <p>Rejected: {{ status_counts['Rejected'] }}</p>
+        <p>Offered: {{ status_counts['Offered'] }}</p>
+    </div>
+</div>
+
+<!-- Chart -->
+<div>
+    <div class="card-body">
+        <h5 class="card-title">Job Applications by Status</h5>
+        <canvas id="statusChart" width="400" height="200"></canvas>
+    </div>
+</div>
+
+{% endblock %}

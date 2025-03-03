@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Job Applications</h1>
+
+<!-- Add Job Form -->
+<div>
+    <h2>Add New Job Application</h2>
+    <button onclick=showAddJob()>Add</button>
+    <wrapper>
+    <dialog id="addjob">
+        <form method="POST" action="{{ url_for('main.add_job') }}">
+            <div>
+                <label for="company_name">Company Name</label>
+                <input type="text" id="company_name" name="company_name" required>
+            </div>
+            <div>
+                <label for="job_title">Job Title</label>
+                <input type="text" id="job_title" name="job_title" required>
+            </div>
+            <div>
+                <label for="application_date">Application Date</label>
+                <input type="date" id="application_date" name="application_date" required>
+            </div>
+            <div>
+                <label for="status">Status</label>
+                <select id="status" name="status" required>
+                    <option value="Applied">Applied</option>
+                    <option value="Interviewing">Interviewing</option>
+                    <option value="Rejected">Rejected</option>
+                    <option value="Offered">Offered</option>
+                </select>
+            </div>
+            <div>
+                <label for="notes">Notes</label>
+                <textarea id="notes" name="notes" rows="3"></textarea>
+            </div>
+            <button type="submit">Add Job</button>
+            <button onclick =closeDialog() type="button">Cancel</button>
+        </form>
+    </wrapper>
+    </dialog>
+</div>
+
+<!-- Job Applications Table -->
+<h2>Your Job Applications</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Company</th>
+            <th>Job Title</th>
+            <th>Date</th>
+            <th>Status</th>
+            <th>Notes</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for job in jobs %}
+        <tr>
+            <td>{{ job.company_name }}</td>
+            <td>{{ job.job_title }}</td>
+            <td>{{ job.application_date.strftime('%Y-%m-%d') }}</td>
+            <td>{{ job.status }}</td>
+            <td>{{ job.notes }}</td>
+            <td>
+                <a href="{{ url_for('main.edit_job', id=job.id) }}">Edit</a>
+                <form method="POST" action="{{ url_for('main.delete_job', id=job.id) }}" style="display:inline;">
+                    <button type="submit" onclick="return confirm('Are you sure?')">Delete</button>
+                </form>
+            </td>
+        </tr>
+        {% else %}
+        <tr>
+            <td colspan="3">Let's Start Applying!</td>
+        </tr>
+        {% endfor %}
+        
+    </tbody>
+</table>
+{% endblock %}
