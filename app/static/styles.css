@@ -1,10 +1,488 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Syne:wght@400..800&display=swap');
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
 
 
-h2{
-    color: red;
+:root {
+    --ff: "Syne", sans-serif;
+    --ff2: "Fira Code", monospace;
+    --h1: 800 2rem/1.2em var(--ff);
+    --p: 400 1rem/1.5em var(--ff);
+    --p-code: 300 .7rem/2em var(--ff2);
+    --hue: 0;
+
+
+    --color-primary: hsl(242, 49%, 90%);
+    --color-secondary: hsl(243, 50%, 10%);
+    --color-tertiary: hsl(303, 80%, 20%);
+    --color-accent: hsl(183, 80%, 20%);
+}
+.dark {
+    --color-primary: hsl(243, 50%, 10%);
+    --color-secondary: hsl(243, 50%, 90%);
+    --color-tertiary: hsl(303, 80%, 80%);
+    --color-accent: hsl(183, 80%, 80%);
 }
 
-.body{
-    min-width: 800px;
-    border: 1px solid black
+#dark {
+    width: 12px;
+    fill: white;
+    cursor: pointer;
+    background: var(--pre-primary-color);
+    border-radius: 20px;
+    box-shadow: 0 2px 2px hsla(var(--hue), 50%, 10%, .3), 0 4px 4px hsla(var(--hue), 50%, 10%, .15);
+    margin-left: 10px;
 }
+
+nav{
+ 
+    font-family: var(--ff1);
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+    border-bottom: 1px solid black;
+    
+
+}
+nav a{
+    text-decoration: none;
+    font-size: 24px;
+
+}
+a, a:visited, a:hover, a:active {
+    color: inherit;
+  }
+
+
+body{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-image: radial-gradient(73% 147%, #EADFDF 59%, #ECE2DF 100%), radial-gradient(91% 146%, rgba(255,255,255,0.50) 47%, rgba(0,0,0,0.50) 100%);
+    background-blend-mode: screen;
+    font-family: var(--ff2);
+}
+
+main{
+    margin: auto;
+    width: 80%;
+
+    
+}
+
+table {
+    width: 100%;
+    margin: auto;
+    border-collapse: collapse;
+    border-radius: 10px;
+
+}
+
+th, td {
+    font-size: 15px;
+    padding: 10px;
+    border: 1px solid #444;
+    text-align: center;
+    text-wrap: wrap;
+}
+
+th {
+    
+}
+
+tr:nth-child(4) {
+    width: 20px;
+}
+
+.status {
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.status.Applied { background-color: #447ea0; color: white; }
+.status.Interviewing { background-color: orange; color: black; }
+.status.Offered { background-color: green; color: white; }
+.status.Rejected { background-color: #871a18; color: white; }
+.status.Waiting { background-color: gray; color: white; }
+
+
+i{
+    margin-right: 5px;
+}
+
+.statBox{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    border-bottom: 1px solid black;
+    
+}
+
+.statBox p{
+    padding: 10px;
+}
+
+.delete-button {
+    width: 150px;
+    height: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    background: #e62222;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .delete-button .text {
+    transform: translateX(35px);
+    color: white;
+    font-weight: bold;
+    transition: 200ms;
+  }
+
+  .delete-button .icon {
+    position: absolute;
+    border-left: 1px solid #c41b1b;
+    transform: translateX(110px);
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 200ms;
+  }
+
+  .delete-button svg {
+    width: 15px;
+    fill: #eee;
+    transition: 200ms;
+  }
+
+  .delete-button:hover {
+    background: #ff3636;
+  }
+
+  .delete-button:hover .text {
+    color: transparent;
+  }
+
+  .delete-button:hover .icon {
+    width: 150px;
+    border-left: none;
+    transform: translateX(0);
+  }
+
+  .delete-button:focus {
+    outline: none;
+  }
+
+  .delete-button:active .icon svg {
+    transform: scale(0.8);
+  }
+
+  /* Confirm Button */
+  .confirm-button {
+    width: 150px;
+    height: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    background: #00a600;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .confirm-button .text {
+    transform: translateX(35px);
+    color: white;
+    font-weight: bold;
+    transition: 200ms;
+  }
+
+  .confirm-button .icon {
+    position: absolute;
+    border-left: 1px solid #006e00;
+    transform: translateX(110px);
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 200ms;
+  }
+
+  .confirm-button svg {
+    width: 20px;
+    fill: #eee;
+    transition: 200ms;
+  }
+
+  .confirm-button:hover {
+    background: #00b800;
+  }
+
+  .confirm-button:hover .text {
+    color: transparent;
+  }
+
+  .confirm-button:hover .icon {
+    width: 150px;
+    border-left: none;
+    transform: translateX(0);
+  }
+
+  .confirm-button:focus {
+    outline: none;
+  }
+
+  .confirm-button:active .icon svg {
+    transform: scale(0.8);
+  }
+
+  /* Add Button */
+  .add-button {
+    width: 150px;
+    height: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    background: #00a600;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .add-button .text {
+    transform: translateX(35px);
+    color: white;
+    font-weight: bold;
+    transition: 200ms;
+  }
+
+  .add-button .icon {
+    position: absolute;
+    border-left: 1px solid #007300;
+    transform: translateX(110px);
+    height: 40px;
+    width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 200ms;
+  }
+
+  .add-button .buttonSpan {
+    color: white;
+    font-size: 30px;
+    transition: 200ms;
+  }
+
+  .add-button:hover {
+    background: #00b800;
+  }
+
+  .add-button:active {
+    background: #00cc00;
+  }
+
+  .add-button:hover .text {
+    color: transparent;
+  }
+
+  .add-button:hover .icon {
+    width: 150px;
+    border-left: none;
+    transform: translateX(0);
+  }
+
+  .add-button:focus {
+    outline: none;
+  }
+
+  .add-button:active .icon .buttonSpan {
+    transform: scale(0.8);
+  }
+
+  /* From Uiverse.io by ZAKARIAE48CHELLE */ 
+.editBtn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100px;
+    height: 40px;
+    border: none;
+    padding: 0px 20px;
+    background-color: rgb(71, 86, 96);
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+    border-radius: 10px;
+    transition-duration: 0.3s;
+  }
+  
+  .svg {
+    width: 13px;
+    position: absolute;
+    right: 0;
+    margin-right: 20px;
+    fill: white;
+    transition-duration: 0.3s;
+  }
+  
+  .editBtn:hover {
+    color: transparent;
+  }
+  
+  .editBtn:hover svg {
+    right: 43%;
+    margin: 0;
+    padding: 0;
+    border: none;
+    transition-duration: 0.3s;
+  }
+  
+  .editBtn:active {
+    transform: translate(3px, 3px);
+    transition-duration: 0.3s;
+    box-shadow: 2px 2px 0px white;
+  }
+
+
+  .dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.btn {
+    width: 150px;
+    height: 40px;
+    border-radius: 5px;
+    border: none;
+    transition: all 0.5s ease-in-out;
+    font-size: 20px;
+    font-family: Verdana, Tahoma, sans-serif;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    background: #000000;
+    color: #f5f5f5;
+    cursor: pointer;
+    position: relative;
+}
+
+.btn:hover {
+    box-shadow: 0 0 20px 0px #2e2e2e3a;
+}
+
+.btn .icon {
+    position: absolute;
+    height: 40px;
+    width: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.5s;
+}
+
+.btn .text {
+    transform: translateX(55px);
+}
+
+.btn:hover .icon {
+    width: 175px;
+}
+
+.btn:hover .text {
+    transition: all 0.5s;
+    opacity: 0;
+}
+
+.btn:focus {
+    outline: none;
+}
+
+.btn:active .icon {
+    transform: scale(0.85);
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #000000;
+    min-width: 150px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    margin-top: 5px;
+    border-radius: 5px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.dropdown::after {
+  content: "";
+  height: 5px; /* Height of the bridge */
+  width: 100%;
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  z-index: 1;
+}
+
+.dropdown-content a {
+    margin-top: 0; /* Remove any margin */
+    top: 100%; /* Position it directly below the button */
+    padding-top: 5px; /* Add padding at the top instead of margin */
+    color: #f5f5f5;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    transition: all 0.3s ease;
+}
+
+.dropdown-content a:hover {
+    background-color: #0c2638;
+}
+
+.show {
+    display: block;
+    animation: fadeIn 0.3s;
+}
+
+/* Show dropdown on hover */
+.dropdown:hover .dropdown-content {
+  display: block;
+  animation: fadeIn 0.3s;
+}
+/* Keep icon expanded when dropdown is visible */
+.dropdown:hover .btn .icon {
+  width: 175px;
+}
+
+.dropdown:hover .btn .text {
+  opacity: 0;
+}
+
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+  
+
+ .tableBox{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+ }

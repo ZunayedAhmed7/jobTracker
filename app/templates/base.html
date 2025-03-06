@@ -1,36 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Job Application Tracker</title>
-    <!-- Link to CSS -->
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    
 </head>
+
 <body>
-    <nav>
-        <a href="https://zunayed7.com/" target="_blank">zunayed7</a>
-        <a href="{{ url_for('main.home') }}">Home</a>
-        <a href="{{ url_for('main.stats') }}">Statistics</a>
-    </nav>
 
-    <div>
-        <!-- Flash messages -->
-        {% with messages = get_flashed_messages(with_categories=true) %}
+    <main>
+        
+        <nav>
+            <a href="https://zunayed7.com/" target="_blank">zunayed7</a>
+            <div>
+                <h1>Job Application Tracker</h1>
+            </div>
+            <div class="dropdown">
+                <button class="btn">
+                    <span class="icon">
+                        <svg viewBox="0 0 175 80" width="40" height="40">
+                            <rect width="80" height="15" fill="#f0f0f0" rx="10"></rect>
+                            <rect y="30" width="80" height="15" fill="#f0f0f0" rx="10"></rect>
+                            <rect y="60" width="80" height="15" fill="#f0f0f0" rx="10"></rect>
+                        </svg>
+                    </span>
+                    <span class="text">Menu</span>
+                </button>
+                <div id="myDropdown" class="dropdown-content">
+                    <a href="#">Home</a>
+                    <a href="#">About</a>
+                </div>
+            </div>
+        </nav>
+
+
+
+
+
+
+
+
+        
+        <div>
+            <!-- Flash messages -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
-                {% for category, message in messages %}
-                    <div>
-                        {{ message }}
-                    </div>
-                {% endfor %}
+            {% for category, message in messages %}
+            <div>
+                {{ message }}
+            </div>
+            {% endfor %}
             {% endif %}
-        {% endwith %}
+            {% endwith %}
 
-        <!-- Content block -->
+            <!-- Content block -->
+        </div>
         {% block content %}{% endblock %}
-    </div>
-
-    <!-- Link to JavaScript -->
+        <!-- Link to JavaScript -->
+    </main>
     <script src="{{ url_for('static', filename='script.js') }}"></script>
 </body>
+
 </html>

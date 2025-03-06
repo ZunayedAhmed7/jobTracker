@@ -43,15 +43,61 @@
 
 const dialog = document.getElementById("addjob")
 const wrapper = document.querySelector(".wrapper")
-function showAddJob(){
-    dialog.showModal()
+
+
+
+function showAddJob() {
+    // Clear the form fields
+    document.getElementById('company_name').value = '';
+    document.getElementById('job_title').value = '';
+    document.getElementById('application_date').value = '';
+    document.getElementById('status').value = 'Applied';
+    document.getElementById('link').value = '';
+    document.getElementById('notes').value = '';
+    document.getElementById('referral').value = '';
+
+    // Update the form action for adding a new job
+    const form = document.querySelector('#addjob form');
+    form.action = "{{ url_for('main.add_or_edit_job') }}";
+
+    // Open the dialog
+    document.getElementById('addjob').showModal();
 }
+
+
+
+
+
 function closeDialog(){
     dialog.close()
 }
 dialog.addEventListener("click", (e) => {
-    // Check if the click target is the dialog itself (not the wrapper or its children)
     if (e.target === dialog) {
         dialog.close();
     }
 });
+
+function openEditJobForm(jobId) {
+    // Fetch the job data
+    fetch(`/api/jobs/${jobId}`)
+        .then(response => response.json())
+        .then(job => {
+            // Populate the form fields
+            document.getElementById('company_name').value = job.company_name;
+            document.getElementById('job_title').value = job.job_title;
+            document.getElementById('application_date').value = job.application_date;
+            document.getElementById('status').value = job.status;
+            document.getElementById('link').value = job.link;
+            document.getElementById('notes').value = job.notes;
+            document.getElementById('referral').value = job.referral;
+
+            // Update the form action to include the job ID
+            const form = document.querySelector('#addjob form');
+            form.action = `/edit/${jobId}`;
+
+            // Open the dialog
+            document.getElementById('addjob').showModal();
+        })
+        .catch(error => console.error('Error fetching job data:', error));
+}
+
