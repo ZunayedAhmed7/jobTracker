@@ -58,7 +58,7 @@ function showAddJob() {
 
     // Update the form action for adding a new job
     const form = document.querySelector('#addjob form');
-    form.action = "{{ url_for('main.add_or_edit_job') }}";
+
 
     // Open the dialog
     document.getElementById('addjob').showModal();
@@ -90,6 +90,7 @@ function openEditJobForm(jobId) {
             document.getElementById('link').value = job.link;
             document.getElementById('notes').value = job.notes;
             document.getElementById('referral').value = job.referral;
+            // document.getElementById('response_date').value = job.response_date;
 
             // Update the form action to include the job ID
             const form = document.querySelector('#addjob form');
@@ -101,3 +102,41 @@ function openEditJobForm(jobId) {
         .catch(error => console.error('Error fetching job data:', error));
 }
 
+document.addEventListener("DOMContentLoaded", function () {
+    const tableBody = document.getElementById("jobTableBody");
+
+    // Sorting logic when a header is clicked
+    document.querySelectorAll("th").forEach((header, index) => {
+        header.addEventListener("click", () => {
+            const rows = Array.from(tableBody.querySelectorAll("tr"));
+            const isDateColumn = index === 3 || index === 4; // Apply Date & Response Date
+            const isStatusColumn = index === 2; // Status Column
+            const isAscending = header.getAttribute("data-order") !== "asc";
+
+            // Custom sorting order for status
+            const statusOrder = { "Applied": 1, "Interviewing": 2, "Offered": 3, "Rejected": 4 };
+
+            rows.sort((rowA, rowB) => {
+                let cellA = rowA.cells[index].textContent.trim();
+                let cellB = rowB.cells[index].textContent.trim();
+
+                if (isStatusColumn) {
+                    return (statusOrder[cellA] || 99) - (statusOrder[cellB] || 99);
+                } else if (isDateColumn) {
+                    return new Date(cellA) - new Date(cellB);
+                } else {
+                    return cellA.localeCompare(cellB);
+                }
+            });
+
+            if (!isAscending) rows.reverse(); // Reverse order if already ascending
+
+            // Update header attribute for sorting direction
+            header.setAttribute("data-order", isAscending ? "asc" : "desc");
+
+            // Re-append sorted rows to the table
+            tableBody.innerHTML = "";
+            rows.forEach(row => tableBody.appendChild(row));
+        });
+    });
+});

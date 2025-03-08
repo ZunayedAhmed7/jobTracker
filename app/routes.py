@@ -37,6 +37,7 @@ def add_or_edit_job(id=None):
         company_name = request.form['company_name']
         job_title = request.form['job_title']
         application_date = datetime.strptime(request.form['application_date'], '%Y-%m-%d').date()
+
         status = request.form['status']
         notes = request.form['notes']
         link = request.form['link']
@@ -100,3 +101,9 @@ def get_job(id):
         'notes': job.notes,
         'referral': job.referral
     })
+
+
+@bp.route('/login', methods = ['GET','POST'])
+def login():
+
+    return render_template('login.html')

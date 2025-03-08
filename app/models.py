@@ -14,7 +14,6 @@ class JobApplication(db.Model):
     status = db.Column(db.String(50), nullable=False)
     notes = db.Column(db.Text, nullable=True)
     link = db.Column(db.Text, nullable = True)
-    response_date = db.Column(db.Date, nullable=True)
     referral = db.Column(db.String(100), nullable=True)
 
     def __repr__(self):
@@ -29,6 +28,7 @@ class JobApplication(db.Model):
             company_name=company_name,
             job_title=job_title,
             application_date=application_date,
+
             status=status,
             notes=notes,
             link=link,
@@ -45,6 +45,7 @@ class JobApplication(db.Model):
         self.company_name = company_name
         self.job_title = job_title
         self.application_date = application_date
+
         self.status = status
         self.notes = notes
         self.link = link

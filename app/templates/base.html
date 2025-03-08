@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Job Application Tracker</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='login.css') }}">
     
 </head>
 
@@ -30,8 +31,8 @@
                     <span class="text">Menu</span>
                 </button>
                 <div id="myDropdown" class="dropdown-content">
-                    <a href="#">Home</a>
-                    <a href="#">About</a>
+                    <a href="/">Home</a>
+                    <a href="/login">About</a>
                 </div>
             </div>
         </nav>
@@ -49,9 +50,10 @@
             {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
             {% for category, message in messages %}
-            <div>
-                {{ message }}
-            </div>
+            <div class="flash-messages">
+                {% for message in messages %}
+                <div class="message">{{ message }}</div>
+                {% endfor %}
             {% endfor %}
             {% endif %}
             {% endwith %}
