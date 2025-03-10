@@ -163,66 +163,20 @@ i {
 /* Buttons */
 
 /* Delete Button */
-.delete-button {
-    width: 150px;
-    height: 50px;
-    cursor: pointer;
+
+  #delete-button:hover {
+    transition-duration: 0.3s;
+    background-color: rgb(255, 69, 69);
+    align-items: center;
+    gap: 0;
+  }
+
+  .formHeader{
     display: flex;
     align-items: center;
-    background: #e62222;
-    border: none;
-    border-radius: 5px;
-    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.15);
-    position: relative;
-    overflow: hidden;
+    justify-content: space-around;
 }
-
-.delete-button .text {
-    transform: translateX(35px);
-    color: white;
-    font-weight: bold;
-    transition: 200ms;
-}
-
-.delete-button .icon {
-    position: absolute;
-    border-left: 1px solid #c41b1b;
-    transform: translateX(110px);
-    height: 40px;
-    width: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: 200ms;
-}
-
-.delete-button svg {
-    width: 15px;
-    fill: #eee;
-    transition: 200ms;
-}
-
-.delete-button:hover {
-    background: #ff3636;
-}
-
-.delete-button:hover .text {
-    color: transparent;
-}
-
-.delete-button:hover .icon {
-    width: 150px;
-    border-left: none;
-    transform: translateX(0);
-}
-
-.delete-button:focus {
-    outline: none;
-}
-
-.delete-button:active .icon svg {
-    transform: scale(0.8);
-}
+  
 
 /* Confirm Button */
 .confirm-button {

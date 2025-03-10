@@ -1,45 +1,3 @@
-// Wait for the DOM to load
-// document.addEventListener('DOMContentLoaded', function () {
-//     // Get the chart canvas element
-//     const ctx = document.getElementById('statusChart').getContext('2d');
-
-//     // Create the chart
-//     const statusChart = new Chart(ctx, {
-//         type: 'bar',
-//         data: {
-//             labels: ['Applied', 'Interviewing', 'Rejected', 'Offered'],
-//             datasets: [{
-//                 label: 'Job Applications by Status',
-//                 data: [
-//                     parseInt(document.currentScript.getAttribute('data-applied')),
-//                     parseInt(document.currentScript.getAttribute('data-interviewing')),
-//                     parseInt(document.currentScript.getAttribute('data-rejected')),
-//                     parseInt(document.currentScript.getAttribute('data-offered'))
-//                 ],
-//                 backgroundColor: [
-//                     'rgba(75, 192, 192, 0.2)',
-//                     'rgba(255, 206, 86, 0.2)',
-//                     'rgba(255, 99, 132, 0.2)',
-//                     'rgba(54, 162, 235, 0.2)'
-//                 ],
-//                 borderColor: [
-//                     'rgba(75, 192, 192, 1)',
-//                     'rgba(255, 206, 86, 1)',
-//                     'rgba(255, 99, 132, 1)',
-//                     'rgba(54, 162, 235, 1)'
-//                 ],
-//                 borderWidth: 1
-//             }]
-//         },
-//         options: {
-//             scales: {
-//                 y: {
-//                     beginAtZero: true
-//                 }
-//             }
-//         }
-//     });
-// });
 
 const dialog = document.getElementById("addjob")
 const wrapper = document.querySelector(".wrapper")
@@ -48,6 +6,7 @@ const wrapper = document.querySelector(".wrapper")
 
 function showAddJob() {
     // Clear the form fields
+    document.querySelector('.formHeader h1').textContent = 'Add Application';
     document.getElementById('company_name').value = '';
     document.getElementById('job_title').value = '';
     document.getElementById('application_date').value = '';
@@ -58,6 +17,9 @@ function showAddJob() {
 
     // Update the form action for adding a new job
     const form = document.querySelector('#addjob form');
+
+    const deleteButton = document.getElementById('delete-button');
+    deleteButton.style.display = 'none';
 
 
     // Open the dialog
@@ -94,7 +56,15 @@ function openEditJobForm(jobId) {
 
             // Update the form action to include the job ID
             const form = document.querySelector('#addjob form');
+            document.querySelector('.formHeader h1').textContent = 'Edit Application';
             form.action = `/edit/${jobId}`;
+
+            // Show the delete button since this is edit mode
+             const deleteButton = document.getElementById('delete-button');
+            deleteButton.style.display = 'inline-block';
+                        
+            // Set the current job ID as a data attribute on the delete button
+            deleteButton.setAttribute('data-job-id', jobId);
 
             // Open the dialog
             document.getElementById('addjob').showModal();
@@ -140,3 +110,19 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
+
+
+function deleteJob() {
+    // Get the job ID from the data attribute
+    const jobId = document.getElementById('delete-button').getAttribute('data-job-id');
+    
+    // Confirm deletion
+    if (confirm('Are you sure you want to delete this job application?')) {
+        // Create a form to submit the POST request
+        const form = document.createElement('form');
+        form.method = 'POST';
+        form.action = `/delete/${jobId}`;
+        document.body.appendChild(form);
+        form.submit();
+    }
+}
